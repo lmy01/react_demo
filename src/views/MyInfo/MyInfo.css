@@ -1,0 +1,20 @@
+.info-c .info-inner {
+  min-width: 750px;
+  max-width: 1000px;
+  padding: 40px 10px;
+  align-items: start;
+}
+.info-c .info-inner .ant-card {
+  width: 260px !important;
+}
+.info-c .info-inner .info-form {
+  width: 1px;
+  flex-grow: 1;
+  padding-left: 20px;
+}
+.info-c .info-inner .info-form .ant-tag {
+  margin: 0 3px 8px 0;
+}
+.info-c .info-inner .info-form .optionBtn-c {
+  text-align: right;
+}

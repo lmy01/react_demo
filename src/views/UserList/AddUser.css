@@ -1,0 +1,9 @@
+.addUser-c {
+  padding: 30px;
+}
+.addUser-c .ant-form {
+  width: 1px;
+  max-width: 600px;
+  min-width: 300px;
+  flex-grow: 1;
+}

@@ -1,0 +1,8 @@
+.search-c {
+  padding: 20px 10px 5px;
+  margin-bottom: 10px;
+  background-color: #f6f6f6;
+}
+.search-c .ant-form .searchBtn-c .ant-form-item {
+  text-align: right;
+}
