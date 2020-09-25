@@ -8,6 +8,7 @@ import Dashboard from './views/Dashboard/Dashboard'
 import UserList from './views/UserList/UserList'
 import AddUser from './views/UserList/AddUser'
 import MyInfo from './views/MyInfo/MyInfo'
+import Todos from './views/Todos/Todos'
 import { Layout, Button, Menu, Dropdown } from 'antd';
 import {
   MenuUnfoldOutlined,
@@ -84,6 +85,10 @@ class App extends React.Component{
       this.setState({
         sideMenu: 'myinfo'
       })
+    }else if(this.props.history.location.pathname.indexOf('/app/todos') === 0) {
+      this.setState({
+        sideMenu: 'todos'
+      })
     }else{
       console.log('.....App.js----93行')
     }
@@ -125,6 +130,10 @@ class App extends React.Component{
                 <UserOutlined style={{fontSize: '18px'}} />
                 <span>我的信息</span>
               </Menu.Item>
+              <Menu.Item key="todos">
+                <UserOutlined style={{fontSize: '18px'}} />
+                <span>Todo List</span>
+              </Menu.Item>
             </Menu>
           </Sider>
           <Layout id="app-layout-layout">
@@ -157,6 +166,8 @@ class App extends React.Component{
                     return <AddUser history={this.props.history}></AddUser>
                   case 'myinfo':
                     return <MyInfo history={this.props.history}></MyInfo>
+                  case 'todos':
+                    return <Todos history={this.props.history}></Todos>
                   default:
                     return <Dashboard history={this.props.history}></Dashboard>
                   }

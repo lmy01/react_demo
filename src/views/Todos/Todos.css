@@ -1,0 +1,22 @@
+.todos-c {
+  display: flex;
+  justify-content: center;
+}
+.todos-c > div {
+  width: 400px;
+}
+.todos-c > div .input-c {
+  display: flex;
+}
+.todos-c > div .input-c button {
+  margin-left: 10px;
+}
+.todos-c > div .list-c {
+  padding: 10px 0;
+}
+.todos-c > div .list-c > div {
+  line-height: 28px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+}
