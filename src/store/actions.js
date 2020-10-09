@@ -7,3 +7,17 @@ export function setLink (data) {
   }
 }
 
+export function setChild1Msg (data) {
+  // console.log(data)
+  return (dispatch, getState) => {
+    dispatch({ type: 'SET_CHILD1MSG', data: data })
+  }
+}
+
+export function setChild2Msg (data) {
+  // console.log(data)
+  return (dispatch, getState) => {
+    dispatch({ type: 'SET_CHILD2MSG', data: data })
+  }
+}
+
