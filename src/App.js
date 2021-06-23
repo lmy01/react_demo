@@ -3,19 +3,23 @@ import './App.less';
 // connect方法的作用：将额外的props传递给组件，并返回新的组件，组件在该过程中不会受到影响
 import { connect } from 'react-redux'
 // 引入action
-import { setLink} from './store/actions.js'
+import { setLink } from './store/actions.js'
 import Dashboard from './views/Dashboard/Dashboard'
 import UserList from './views/UserList/UserList'
 import AddUser from './views/UserList/AddUser'
 import MyInfo from './views/MyInfo/MyInfo'
 import Todos from './views/Todos/Todos'
+import Echarts from './views/Echarts/Echarts'
+import PMP from './views/PMP/PMP'
 import { Layout, Button, Menu, Dropdown } from 'antd';
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  UserOutlined,
   DashboardOutlined,
   TeamOutlined,
+  UserOutlined,
+  CheckSquareOutlined,
+  BarChartOutlined,
   DownOutlined,
   LogoutOutlined
 } from '@ant-design/icons';
@@ -28,6 +32,38 @@ class App extends React.Component{
     this.state = {
       name: window.sessionStorage.getItem('name') ? window.sessionStorage.getItem('name'): '',
       sideMenu: 'dashboard',
+      menus: [
+        {
+          key: 'dashboard',
+          name: '仪表面板',
+          childRouter: []
+        },
+        {
+          key: 'userlist',
+          name: '用户列表',
+          childRouter: ['adduser']
+        },
+        {
+          key: 'myinfo',
+          name: '我的信息',
+          childRouter: []
+        },
+        {
+          key: 'todos',
+          name: 'Todo List',
+          childRouter: []
+        },
+        {
+          key: 'echarts',
+          name: 'Echarts图表',
+          childRouter: []
+        },
+        {
+          key: 'pmp',
+          name: 'PMP练习',
+          childRouter: []
+        },
+      ],
       collapsed: false,
       settingMenu: (
         <Menu onClick={this.clickSettingMenu}>
@@ -68,34 +104,25 @@ class App extends React.Component{
 
   }
   componentDidMount() {
+    // console.log(this.props)
     // console.log(this.props.history.location)
     // console.log(this.props.match.params.rt)
     if(!window.sessionStorage.getItem('name')) {
       this.props.history.push('/login')
     }
-    if(this.props.history.location.pathname.indexOf('/app/dashboard') === 0){
-      this.setState({
-        sideMenu: 'dashboard'
-      })
-    }else if(['/app/userlist', '/app/adduser'].indexOf(this.props.history.location.pathname) > -1) {
-      this.setState({
-        sideMenu: 'userlist'
-      })
-    }else if(this.props.history.location.pathname.indexOf('/app/myinfo') === 0) {
-      this.setState({
-        sideMenu: 'myinfo'
-      })
-    }else if(this.props.history.location.pathname.indexOf('/app/todos') === 0) {
-      this.setState({
-        sideMenu: 'todos'
-      })
-    }else{
-      console.log('.....App.js----93行')
-    }
+
+    // 根据路由高亮对应侧边菜单
+    let pathname = this.props.history.location.pathname.split('/')[this.props.history.location.pathname.split('/').length - 1]
+    this.state.menus.forEach(item => {
+      if ((pathname === item.key) || (item.childRouter.indexOf(pathname) > -1)) {
+        this.setState({
+          sideMenu: item.key
+        })
+      }
+    })
   }
 
   componentDidUpdate() {
-    // console.log(this.props.history.location.pathname)
     this.props.setLink(this.props.history.location.pathname)
   }
 
@@ -118,22 +145,14 @@ class App extends React.Component{
               }
             </div>
             <Menu id="app-layout-sider-menu" theme="dark" mode="inline" selectedKeys={[this.state.sideMenu]} defaultSelectedKeys={[this.state.sideMenu]}  onClick={this.clickSiderMenu}>
-              <Menu.Item key="dashboard">
-                <DashboardOutlined style={{fontSize: '18px'}} />
-                <span>仪表面板</span>
-              </Menu.Item>
-              <Menu.Item key="userlist">
-                <TeamOutlined style={{fontSize: '18px'}} />
-                <span>用户列表</span>
-              </Menu.Item>
-              <Menu.Item key="myinfo">
-                <UserOutlined style={{fontSize: '18px'}} />
-                <span>我的信息</span>
-              </Menu.Item>
-              <Menu.Item key="todos">
-                <UserOutlined style={{fontSize: '18px'}} />
-                <span>Todo List</span>
-              </Menu.Item>
+              {
+                this.state.menus.map(item => {
+                  return <Menu.Item key={item.key}>
+                    <DashboardOutlined style={{fontSize: '18px'}} />
+                    <span>{item.name}</span>
+                  </Menu.Item>
+                })
+              }
             </Menu>
           </Sider>
           <Layout id="app-layout-layout">
@@ -168,6 +187,10 @@ class App extends React.Component{
                     return <MyInfo history={this.props.history}></MyInfo>
                   case 'todos':
                     return <Todos history={this.props.history}></Todos>
+                  case 'echarts':
+                    return <Echarts history={this.props.history}></Echarts>
+                  case 'pmp':
+                    return <PMP history={this.props.history}></PMP>
                   default:
                     return <Dashboard history={this.props.history}></Dashboard>
                   }

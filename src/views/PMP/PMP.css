@@ -1,0 +1,42 @@
+.ant-divider-horizontal {
+  margin: 12px 0;
+}
+.ant-back-top {
+  right: 10px;
+}
+#charters > div {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 3px 6px;
+  margin: 5px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+#charters > div:hover {
+  cursor: pointer;
+  background-color: lightblue;
+}
+#charters > .selectedMenu {
+  color: #fff;
+  background-color: #006699;
+}
+#content {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#content .ant-card-head-title {
+  white-space: normal;
+}
+#content .option {
+  padding: 5px;
+  margin: 2px;
+  border-radius: 3px;
+}
+#content .selectedOption {
+  color: #000;
+  background-color: lightblue;
+  transition: background-color 300ms;
+}

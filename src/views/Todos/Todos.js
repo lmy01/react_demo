@@ -2,6 +2,13 @@ import React from 'react'
 import { Input, Button, message } from 'antd'
 import './Todos.less'
 
+const nowDate = new Date(new Date().toLocaleDateString()).getTime()
+const ystDate = new Date(nowDate - 86400000).getTime()
+const agoDate = new Date(ystDate - 86400000).getTime()
+let todayFlag = null
+let ystFlag = null
+let agoFlag = null
+
 export default class Todos extends React.Component{
   constructor(props) {
     super(props)
@@ -11,10 +18,22 @@ export default class Todos extends React.Component{
       list: [
         {
           text: '思想成熟、有活力、为人诚实。',
+          date: '2021/06/22',
           status: '1' // 0 移除  1 正常
         },
         {
-          text: '强的系统管理能力。能够独立工作。需要有能力及适应力强的人。需要个性稳重、具高度责任感的人。开朗、有进取心的应聘者。',
+          text: '强的系统管理能力。能够独立工作。需要有能力及适应力强的人。需要个性稳重、具高度责任感的人。',
+          date: '2021/06/22',
+          status: '1'
+        },
+        {
+          text: '需要个性稳重、具高度责任感的人。开朗、有进取心的应聘者。',
+          date: '2021/06/21',
+          status: '0'
+        },
+        {
+          text: '需要个性稳重、具高度责任感的人。开朗、有进取心的应聘者。',
+          date: '2021/06/21',
           status: '1'
         }
       ]
@@ -22,6 +41,19 @@ export default class Todos extends React.Component{
 
     this.add = this.add.bind(this)
     this.changeInput = this.changeInput.bind(this)
+  }
+
+  componentDidMount() {
+    this.state.list.forEach((item, index)=>{
+      if((new Date(item.date).getTime() === nowDate) && (todayFlag === null)){
+        todayFlag = index
+      }else if((new Date(item.date).getTime() === ystDate) && (ystFlag === null)){
+        ystFlag = index
+      }else if((new Date(item.date).getTime() < ystDate) && (agoFlag === null)){
+        agoFlag = index
+      }
+    })
+    console.log(todayFlag, ystFlag, agoFlag)
   }
 
   changeInput(e) {
@@ -38,10 +70,24 @@ export default class Todos extends React.Component{
         message.warning('任务内容不能超过100个字符')
       }else{
         this.setState({
-          list: [...this.state.list, {
-            text: this.state.task
-          }]
+          list: [{
+            text: this.state.task,
+            date: new Date(nowDate).toLocaleDateString(),
+            status: '1'
+          }, ...this.state.list]
         }, ()=>{
+          todayFlag = null
+          ystFlag = null
+          agoFlag = null
+          this.state.list.forEach((item, index)=>{
+            if((new Date(item.date).getTime() === nowDate) && (todayFlag === null)){
+              todayFlag = index
+            }else if((new Date(item.date).getTime() === ystDate) && (ystFlag === null)){
+              ystFlag = index
+            }else if((new Date(item.date).getTime() < ystDate) && (agoFlag === null)){
+              agoFlag = index
+            }
+          })
           this.setState({
             task: ''
           })
@@ -80,14 +126,71 @@ export default class Todos extends React.Component{
             {
               this.state.list.map((item, index) => 
                 <div key={index}>
-                  <span style={item.status === '0' ? {textDecoration: 'line-through', opacity: '.5'} : {}}>{index + 1 + ': ' + item.text}</span>
-                  {
-                    item.status === '0' ? <Button type="link" onClick={this.reAdd.bind(this, index)}>重新生效</Button> : (
-                      <span>
-                        <Button danger type="link" onClick={this.remove.bind(this, index)}>删除</Button>
-                      </span>
-                    )
-                  }
+                  
+                    {
+                      new Date(item.date).getTime() === nowDate ? (
+                        <div>
+                          {
+                            todayFlag === index ? <div className="task-date" >今日任务：</div> : null
+                          }
+                          
+                          <div className="task-c" >
+                            <div>
+                              <span>{index + 1 + '. '}</span>
+                              <span style={item.status === '0' ? {textDecoration: 'line-through', opacity: '.5'} : {}}>{item.text}</span>
+                            </div>
+                            {
+                              item.status === '0' ? 
+                              <Button type="link" onClick={this.reAdd.bind(this, index)}>生效</Button> : 
+                              <Button danger type="link" onClick={this.remove.bind(this, index)}>删除</Button>
+                            }
+                            
+                          </div>
+                        </div>
+                      ) : null
+                    }
+                    {
+                      new Date(item.date).getTime() === ystDate ? (
+                        <div>
+                          {
+                            ystFlag === index ? <div className="task-date" >昨日任务：</div> : null
+                          }
+                          <div className="task-c">
+                            <div>
+                              <span>{index + 1 + '. '}</span>
+                              <span style={item.status === '0' ? {textDecoration: 'line-through', opacity: '.5'} : {}}>{item.text}</span>
+                            </div>
+                            {
+                              item.status === '0' ? 
+                              <Button type="link" onClick={this.reAdd.bind(this, index)}>生效</Button> : 
+                              <Button danger type="link" onClick={this.remove.bind(this, index)}>删除</Button>
+                            }
+                            
+                          </div>
+                        </div>
+                      ) : null
+                    }
+                    {
+                      new Date(item.date).getTime() === agoDate ? (
+                        <div>
+                          {
+                            agoFlag === index ? <div className="task-date" >更早任务：</div> : null
+                          }
+                          <div className="task-c" >
+                            <div>
+                              <span>{index + 1 + '. '}</span>
+                              <span style={item.status === '0' ? {textDecoration: 'line-through', opacity: '.5'} : {}}>{item.text}</span>
+                            </div>
+                            {
+                              item.status === '0' ? 
+                              <Button type="link" onClick={this.reAdd.bind(this, index)}>生效</Button> : 
+                              <Button danger type="link" onClick={this.remove.bind(this, index)}>删除</Button>
+                            }
+                            
+                          </div>
+                        </div>
+                      ) : null
+                    }
                   
                 </div>
               )

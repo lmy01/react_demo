@@ -59,7 +59,7 @@ export default class Login extends React.Component{
       <div id="login-c">
         <Row>
           <Col offset={14} span={6}>
-            <Card className="login-card" title="用户登录" extra={<Button type="link" href="/register">没有账号，去注册</Button>} style={{ width: 400 }}>
+            <Card className="login-card" title="用户登录" extra={<Button type="link" href="/register">没有账号？去注册</Button>} style={{ width: 400 }}>
               <Form
                 {...layout}
                 name="basic"

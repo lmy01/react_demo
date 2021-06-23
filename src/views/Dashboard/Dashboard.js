@@ -24,6 +24,10 @@ export default class Dashboard extends React.Component{
     this.changeMsg = this.changeMsg.bind(this)
   }
 
+  componentDidMount() {
+    
+  }
+
   changeMsg(msg) {
     this.setState({
       giveToChildMsg: msg

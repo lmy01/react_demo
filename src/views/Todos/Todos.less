@@ -3,7 +3,7 @@
   justify-content: center;
 
   >div{
-    width: 400px;
+    width: 500px;
 
     .input-c{
       display: flex;
@@ -16,11 +16,25 @@
     .list-c{
       padding: 10px 0;
 
-      >div{
+      .task-date{
+        padding: 5px;
+        background-color: #eee;
+      }
+
+      .task-c{
         line-height: 28px;
         padding: 5px;
         display: flex;
         justify-content: space-between;
+        
+        >div{
+          // display: flex;
+          
+          >span:first-child{
+            display: inline-block;
+            min-width: 20px;
+          }
+        }
       }
     }
   }

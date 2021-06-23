@@ -2,7 +2,7 @@ import React from 'react'
 // connect方法的作用：将额外的props传递给组件，并返回新的组件，组件在该过程中不会受到影响
 import { connect } from 'react-redux'
 // 引入action
-import { setChild1Msg} from '../../store/actions.js'
+import { setChild1Msg } from '../../store/actions.js'
 
 class Child2 extends React.Component{
   constructor(props){
@@ -12,13 +12,11 @@ class Child2 extends React.Component{
       msg: ''
     }
 
-    this.changeChild2Msg = this.changeChild2Msg.bind(this)
-    
+    this.changeChild2Msg = this.changeChild2Msg.bind(this)    
   }
 
   changeChild2Msg() {
     this.props.setChild1Msg('通过子组件222修改了子组件111的值')
-    // console.log(store.getState())
   }
 
   render() {

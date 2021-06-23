@@ -5,9 +5,12 @@ In the project directory, you can run:
 ### `npm run build`
 ### `npm run eject`
 
-<img src="https://raw.githubusercontent.com/lmy01/react_demo/master/public/screenshot/login.png" width="683" height="317" /> 
-<img src="https://raw.githubusercontent.com/lmy01/react_demo/master/public/screenshot/register.png" width="683" height="317" /> 
-<img src="https://raw.githubusercontent.com/lmy01/react_demo/master/public/screenshot/dashboard.png" width="683" height="317" /> 
-<img src="https://raw.githubusercontent.com/lmy01/react_demo/master/public/screenshot/userlist.png" width="683" height="317" /> 
-<img src="https://raw.githubusercontent.com/lmy01/react_demo/master/public/screenshot/adduser.png" width="683" height="317" /> 
-<img src="https://raw.githubusercontent.com/lmy01/react_demo/master/public/screenshot/myinfo.png" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/login.png" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/register.png" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/dashboard.jpg" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/userlist.jpg" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/adduser.jpg" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/myinfo.jpg" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/todos.jpg" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/echarts.jpg" width="683" height="317" /> 
+<img src="https://github.com/lmy01/react_demo/blob/master/public/screenshot/pmp.jpg" width="683" height="317" />

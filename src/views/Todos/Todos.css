@@ -3,7 +3,7 @@
   justify-content: center;
 }
 .todos-c > div {
-  width: 400px;
+  width: 500px;
 }
 .todos-c > div .input-c {
   display: flex;
@@ -14,9 +14,17 @@
 .todos-c > div .list-c {
   padding: 10px 0;
 }
-.todos-c > div .list-c > div {
+.todos-c > div .list-c .task-date {
+  padding: 5px;
+  background-color: #eee;
+}
+.todos-c > div .list-c .task-c {
   line-height: 28px;
   padding: 5px;
   display: flex;
   justify-content: space-between;
+}
+.todos-c > div .list-c .task-c > div > span:first-child {
+  display: inline-block;
+  min-width: 20px;
 }
